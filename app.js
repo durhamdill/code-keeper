@@ -9,8 +9,9 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const User = require("./models/users");
-// const User = models.User;
+// const User = require("./models/users");
+const models = require("./models/users");
+const User = models.User;
 const port = 3000;
 
 const mongoURL = ('mongodb://localhost:27017/codekeeper');
