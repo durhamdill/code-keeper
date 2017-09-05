@@ -8,11 +8,19 @@
 
     <h1>Register for Code Keeper:</h1>
 
+    <!-- {{#messages.error}}
+          <div class="alert alert-danger" role="alert">
+            {{.}}
+          </div>
+      {{/messages.error}} -->
+
     <form action="/register" method="POST">
        <input type="text" name="username" placeholder="Username" />
        <input type="password" name="password" placeholder="Password" />
        <button type="submit">Submit</button>
     </form>
+
+    <a href="/login">Click here to Login>></a>
 
   </body>
 </html>

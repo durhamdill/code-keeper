@@ -25,6 +25,7 @@ userSchema.virtual('password')
     }
 
     userSchema.statics.authenticate = function(username, password, done) {
+      console.log("hello");
         this.findOne({
             username: username
         }, function(err, user) {
@@ -38,7 +39,7 @@ userSchema.virtual('password')
         })
     };
 
-    const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = {
   User: User
