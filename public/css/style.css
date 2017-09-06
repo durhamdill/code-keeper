@@ -1,0 +1,36 @@
+* {
+
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.logo {
+  font-family: 'Quicksand', sans-serif;
+}
+
+body#register, body#login, body#add {
+  margin: 0px auto;
+  text-align: center;
+  width: 75%;
+}
+
+#login-form, #register-form, #add-form {
+  border: 1px solid red;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px 20px 20px 20px;
+}
+
+#add-form {
+  text-align: left;
+}
+
+#add-form h1 {
+  text-align: center;
+}
+
+a {
+  color: red;
+}

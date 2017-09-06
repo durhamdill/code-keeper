@@ -26,7 +26,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'mustache');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/files', express.static(path.join(__dirname, 'public')))
+// app.use('/files', express.static(path.join(__dirname, 'public')))
+app.use(express.static('./public'));
 // what does this do, particularly path.join __dirname?
 
 passport.use(new LocalStrategy(
@@ -64,6 +65,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
+app.get('/add', function(req, res){
+  res.render('add-snippet');
+});
 
 app.get('/register', function(req, res){
     res.render('register');
