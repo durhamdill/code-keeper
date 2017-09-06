@@ -6,19 +6,16 @@ const snipSchema = new mongoose.Schema({
     required: true},
   language: {
     type: String,
-    required: true}
-  }
+    required: true},
   snippet: {
-    type: String,
-  },
+    type: String},
   notes: {
-    type: String,
-  },
+    type: String},
   tags: {},
   public: {},
   created : {
     type : Date,
-    default : Date.now
+    default : Date.now}
   }
 )
 

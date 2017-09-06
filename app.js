@@ -14,7 +14,7 @@ const app = express();
 
 // const User = require("./models/users");
 const userModel = require("./models/users");
-const User = usserModel.User;
+const User = userModel.User;
 const snipModel = require("./models/snippets");
 const Snip = snipModel.Snip;
 const port = 3000;
