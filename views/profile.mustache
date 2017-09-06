@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand:400,700" rel="stylesheet">
+    <title>codeKeeper Profile</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="logo">{codeKeeper}</h1>
+    </header>
+
+    {{#username}}<h2>Welcome, {{username}}!</h2>{{/username}}
+
+    <p>You've saved {{snip.length}} code snippets.
+
+    <button type="button" name="button"><a href="/add">Add a code snippet</a></button></p>
+
+    <div id="snip-container">
+      {{#snip}}
+        <div class="snip">
+          <h2>Title: {{title}}</h2>
+          <p>Language: {{language}}</p>
+          <p>Created: {{created}}</p>
+        </div>
+      {{/snip}}
+    </div>
+
+    {{^snip}}
+      <h1>Start adding code snippets!</h1>
+    {{/snip}}
+
+  </body>
+</html>

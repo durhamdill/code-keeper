@@ -88,9 +88,16 @@ app.post('/add', function(req, res){
     public: req.body.public
   })
   .then(function (snip) {
-    res.send('New snip created');
+    res.redirect('/profile');
   })
 });
+
+app.get('/profile', function(req, res){
+    let results = Snip.find({username: res.locals.user.username});
+    results.then(function (snip) {
+    res.render('profile', {snip: snip, username:res.locals.user.username});
+  })
+})
 
 app.get('/register', function(req, res){
     res.render('register');
@@ -111,14 +118,13 @@ app.post('/register', function (req, res) {
   });
 
   app.post('/login', passport.authenticate('local', {
-      successRedirect: '/',
+      successRedirect: '/profile',
       failureRedirect: '/login',
       failureFlash: true
   }));
 
   app.get('/', function(req, res) {
-    console.log(res.locals.user);
-    Snip.find().then(function (snip) {
+    Snip.find({public: "true"}).then(function (snip) {
       res.render('index', {snip: snip});
     })
   })
