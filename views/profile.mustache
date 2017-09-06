@@ -3,26 +3,28 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand:400,700" rel="stylesheet">
     <title>codeKeeper Profile</title>
   </head>
   <body>
     <header>
       <h1 class="logo">{codeKeeper}</h1>
+
+      {{#username}}<h2>Welcome, {{username}}!</h2>{{/username}}
+
+      <p>You have {{snip.length}} saved snippets.
+
+      <a href="/add" class="button">Add a code snippet</a></p>
+
     </header>
-
-    {{#username}}<h2>Welcome, {{username}}!</h2>{{/username}}
-
-    <p>You've saved {{snip.length}} code snippets.
-
-    <button type="button" name="button"><a href="/add">Add a code snippet</a></button></p>
 
     <div id="snip-container">
       {{#snip}}
-        <div class="snip">
+        <div class="snip {{language}}">
           <h2>Title: {{title}}</h2>
-          <p>Language: {{language}}</p>
           <p>Created: {{created}}</p>
+          <a href='/profile/{{language}}'class='{{language}}'>{{language}}</a>
         </div>
       {{/snip}}
     </div>

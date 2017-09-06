@@ -92,6 +92,13 @@ app.post('/add', function(req, res){
   })
 });
 
+app.get('/profile/:language', function (req, res) {
+    let language = req.params.language;
+    Snip.find({username: res.locals.user.username, language: language}).then(function (snip) {
+      res.render("profile", {snip: snip, language:language, username: res.locals.user.username})
+  })
+})
+
 app.get('/profile', function(req, res){
     let results = Snip.find({username: res.locals.user.username});
     results.then(function (snip) {
