@@ -13,8 +13,10 @@ const flash = require('express-flash-messages');
 const app = express();
 
 // const User = require("./models/users");
-const models = require("./models/users");
-const User = models.User;
+const userModel = require("./models/users");
+const User = usserModel.User;
+const snipModel = require("./models/snippets");
+const Snip = snipModel.Snip;
 const port = 3000;
 
 const mongoURL = ('mongodb://localhost:27017/codekeeper');
@@ -73,6 +75,13 @@ app.use(function (req, res, next) {
 
 app.get('/add', function(req, res){
   res.render('add-snippet');
+});
+
+app.post('/add', function(req, res){
+  Snip.create(req.body)
+  .then(function (snip) {
+    res.send('New snip created');
+  })
 });
 
 app.get('/register', function(req, res){
