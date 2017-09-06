@@ -1,6 +1,9 @@
 const mongoose = require ('mongoose');
 
 const snipSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: 'true'},
   title: {
     type: String,
     required: true},
@@ -12,7 +15,9 @@ const snipSchema = new mongoose.Schema({
   notes: {
     type: String},
   tags: {},
-  public: {},
+  public: {
+    type: String,
+    default: 'false'},
   created : {
     type : Date,
     default : Date.now}

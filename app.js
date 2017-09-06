@@ -78,7 +78,15 @@ app.get('/add', function(req, res){
 });
 
 app.post('/add', function(req, res){
-  Snip.create(req.body)
+  Snip.create({
+    username: res.locals.user.username,
+    title: req.body.title,
+    language: req.body.language,
+    snippet: req.body.snippet,
+    notes: req.body.notes,
+    tags: req.body.tags,
+    public: req.body.public
+  })
   .then(function (snip) {
     res.send('New snip created');
   })
@@ -109,7 +117,10 @@ app.post('/register', function (req, res) {
   }));
 
   app.get('/', function(req, res) {
-    res.send('Login successful');
+    console.log(res.locals.user);
+    Snip.find().then(function (snip) {
+      res.render('index', {snip: snip});
+    })
   })
 
 module.exports = app;
