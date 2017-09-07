@@ -92,11 +92,11 @@ app.post('/add', function(req, res){
   })
 });
 
-app.get('/profile/:snippet', function(req, res){
-  let snippet = req.params.snippet.toString();
-  Snip.find({_id: snippet}).then(function (snip) {
-    res.render('snippet', {snip: snip})
-})
+app.get('/profile', function(req, res){
+    // let javascript = Snip.find({username: res.locals.user.username, language: "Javascript"});
+    Snip.find({username: res.locals.user.username}).then(function (snip) {
+    res.render('profile', {snip: snip, username:res.locals.user.username});
+  })
 })
 
 app.get('/profile/:language', function (req, res) {
@@ -106,11 +106,11 @@ app.get('/profile/:language', function (req, res) {
   })
 })
 
-app.get('/profile', function(req, res){
-    // let javascript = Snip.find({username: res.locals.user.username, language: "Javascript"});
-    Snip.find({username: res.locals.user.username}).then(function (snip) {
-    res.render('profile', {snip: snip, username:res.locals.user.username});
-  })
+app.get('/profile/:snippet', function(req, res){
+  let snippet = req.params.snippet.toString();
+  Snip.find({_id: snippet}).then(function (snip) {
+    res.render('snippet', {snip: snip})
+})
 })
 
 app.get('/register', function(req, res){
