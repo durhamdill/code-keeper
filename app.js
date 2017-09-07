@@ -98,13 +98,21 @@ app.post('/add', function(req, res){
     language: req.body.language,
     snippet: req.body.snippet,
     notes: req.body.notes,
-    tags: req.body.tags,
+    tags: req.body.tags.replace(/\s/g, '').split(","),
     public: req.body.public
   })
   .then(function (snip) {
     res.redirect('/profile');
   })
 });
+
+app.post('/profile/search', function(req, res){
+  let tag = req.body.tag;
+  Snip.find({ tags: { $in: [tag] }}).then(function (snip){
+    res.render("profile", {snip: snip, tag: tag});
+    console.log(tag);
+  })
+})
 
 app.get('/profile', function(req, res){
     // let javascript = Snip.find({username: res.locals.user.username, language: "Javascript"});

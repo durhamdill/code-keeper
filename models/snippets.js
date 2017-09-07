@@ -14,7 +14,7 @@ const snipSchema = new mongoose.Schema({
     type: String},
   notes: {
     type: String},
-  tags: {},
+  tags: [String],
   public: {
     type: String,
     default: 'false'},
