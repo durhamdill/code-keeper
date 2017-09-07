@@ -73,6 +73,20 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get('/profile/:snippet', function(req, res){
+  let snippet = req.params.snippet.toString();
+  Snip.find({_id: snippet}).then(function (snip) {
+    res.render('snippet', {snip: snip})
+})
+})
+
+app.get('/profile/filter/:language', function (req, res) {
+    let language = req.params.language;
+    Snip.find({username: res.locals.user.username, language: language}).then(function (snip) {
+      res.render("profile", {snip: snip, language:language, username: res.locals.user.username})
+  })
+})
+
 app.get('/add', function(req, res){
   res.render('add-snippet');
 });
@@ -97,20 +111,6 @@ app.get('/profile', function(req, res){
     Snip.find({username: res.locals.user.username}).then(function (snip) {
     res.render('profile', {snip: snip, username:res.locals.user.username});
   })
-})
-
-app.get('/profile/:language', function (req, res) {
-    let language = req.params.language;
-    Snip.find({username: res.locals.user.username, language: language}).then(function (snip) {
-      res.render("profile", {snip: snip, language:language, username: res.locals.user.username})
-  })
-})
-
-app.get('/profile/:snippet', function(req, res){
-  let snippet = req.params.snippet.toString();
-  Snip.find({_id: snippet}).then(function (snip) {
-    res.render('snippet', {snip: snip})
-})
 })
 
 app.get('/register', function(req, res){
