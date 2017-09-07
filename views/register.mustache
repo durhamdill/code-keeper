@@ -8,12 +8,12 @@
   </head>
   <body id=register>
     <header>
-      <h1 class=logo>{codeKeeper}</h1>
+      <h1 class="logo button">{codeKeeper}</h1>
+
+      <p class="center">codeKeeper is a place to store, organize, and share your snippets, from work-in-progress to breakthrough code.</p>
+
+      <p class="center">Who says you should throw code away!?</p>
     </header>
-
-    <p>codeKeeper is a place to store, organize, and share your snippets, from work-in-progress to breakthrough code.</p>
-
-    <p>Who says you should throw code away!?</p>
 
     <!-- {{#messages.error}}
           <div class="alert alert-danger" role="alert">
@@ -27,11 +27,11 @@
       <form action="/register" method="POST">
          <input type="text" name="username" placeholder="Username" /> <br>
          <input type="password" name="password" placeholder="Password" /> <br>
-         <button type="submit">Submit</button>
+         <button type="submit" id="registerButton">Submit</button>
       </form>
     </div>
 
-    <a href="/login">Returning user? Go to login>></a>
+    <p class="center">Returning user? <a class="button" href="/login">Go to login</a></p>
 
   </body>
 </html>

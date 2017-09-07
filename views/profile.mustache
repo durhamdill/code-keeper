@@ -9,20 +9,28 @@
   </head>
   <body>
     <header>
-      <h1 class="logo">{codeKeeper}</h1>
+      <h1 class="logo, button">{codeKeeper}</h1>
 
       {{#username}}<h2>Welcome, {{username}}!</h2>{{/username}}
 
-      <p>You have {{snip.length}} saved snippets.
+      <p>You have {{snip.length}} saved snippets.</p>
 
-      <a href="/add" class="button">Add a code snippet</a></p>
+      <div class="">
+        <p>Filter by language:</p>
+        <a class="Javascript" href="/profile/Javascript">Javascript</a>
+        <a class="HTML" href="/profile/HTML">HTML</a>
+        <a class="CSS" href="/profile/CSS">CSS</a>
+        <a class="Ruby" href="/profile/Ruby">Ruby</a>
+        <!-- <p>OR</p> -->
+        <p><a href="/add" class="button">Add a code snippet</a></p>
+      </div>
 
     </header>
 
     <div id="snip-container">
       {{#snip}}
         <div class="snip {{language}}">
-          <h2>Title: {{title}}</h2>
+          <a href='/profile/{{_id}}'><h2>Title: {{title}}</h2></a>
           <p>Created: {{created}}</p>
           <a href='/profile/{{language}}'class='{{language}}'>{{language}}</a>
         </div>
