@@ -14,7 +14,7 @@ header {
   text-align: center;
 }
 
-#login-form, #register-form, #add-form{
+#login-form, #register-form, .add-form{
   border: 2px solid #19AE9D;
   border-radius: 5px;
   margin: 30px auto;
@@ -23,9 +23,10 @@ header {
   width: 300px;
 }
 
-#add-form{
+.add-form{
   width: 60%;
   border: 2px solid #FFC300;
+  text-align: left;
 }
 
 textarea {
@@ -54,10 +55,6 @@ input.width {
   border-radius: 5px;
   padding: 5px 10px;
   /*margin: 5px;*/
-}
-
-.filterBar {
-  /*line-height: 24px;*/
 }
 
 #loginButton, #registerButton, #addButton {
@@ -151,4 +148,9 @@ a {
   /*display: flex;
   flex-direction: column;*/
   flex-grow: 0;
+}
+
+.snippet {
+  border: 1px solid gray;
+  padding: 10px;
 }

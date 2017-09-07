@@ -13,14 +13,15 @@
     </header>
 
     {{#snip}}
-    <div id="add-form">
-      <h1>{{title}}</h1>
-      <p>Title:</p>
-      <p>Primary language:</p>
+    <div class='add-form {{language}}'>
+      <h1 class="center">{{title}}</h1>
       <p>Snippet:</p>
+      <p class="snippet">{{snippet}}</p>
       <p>Notes:</p>
-      <p>Tags (keywords to classify your snippets):</p>
-      <p>Public</p>
+      <p class="snippet">{{notes}}</p>
+      <p>Tags: {{tags}}</p>
+      <p>Public: {{public}}</p>
+      <a href='/profile/{{language}}'class='{{language}}'>{{language}}</a>
     </div>
     {{/snip}}
 
