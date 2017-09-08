@@ -1,5 +1,4 @@
-// DO/FIX:
-// - link to filter by language on indidual snippet pages is not working
+// TODOS: add delete/edit to snippet pages
 
 const fs = require('fs');
 const express = require('express');
@@ -15,7 +14,6 @@ const flash = require('express-flash-messages');
 
 const app = express();
 
-// const User = require("./models/users");
 const userModel = require("./models/users");
 const User = userModel.User;
 const snipModel = require("./models/snippets");
@@ -24,7 +22,6 @@ const port = 3000;
 
 const mongoURL = ('mongodb://localhost:27017/codekeeper');
 mongoose.connect(mongoURL, {useMongoClient: true});
-// var collection = db.collection('users');
 
 app.engine('mustache', mustacheExpress());
 app.set('views', path.join(__dirname, 'views'));
@@ -120,7 +117,6 @@ app.post('/profile/search', function(req, res){
   let tag = req.body.tag;
   Snip.find({ tags: { $in: [tag] }}).sort( { created: -1 } ).then(function (snip){
     res.render("profile", {snip: snip, tag: tag});
-    // console.log(tag);
   })
 })
 
@@ -128,12 +124,10 @@ app.post('/all/search', function(req, res){
   let tag = req.body.tag;
   Snip.find({ public: "true", tags: { $in: [tag] }}).sort( { created: -1 } ).then(function (snip){
     res.render("index", {snip: snip, tag: tag});
-    // console.log(tag);
   })
 })
 
 app.get('/profile', function(req, res){
-    // let javascript = Snip.find({username: res.locals.user.username, language: "Javascript"});
     Snip.find({username: res.locals.user.username}).sort( { created: -1 } ).then(function (snip) {
     res.render('profile', {snip: snip, username:res.locals.user.username});
   })
@@ -146,7 +140,6 @@ app.get('/register', function(req, res){
   });
 
 app.post('/register', function (req, res) {
-  // console.log(req.body);
   User.create(req.body)
   .then(function (user) {
   res.redirect('/login');
@@ -167,7 +160,7 @@ app.post('/register', function (req, res) {
 
   app.get('/', function(req, res) {
     Snip.find({public: "true"}).sort( { created: -1 } ).then(function (snip) {
-      res.render('index', {snip: snip});
+    res.render('index', {snip: snip});
     })
   })
 
