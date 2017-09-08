@@ -3,24 +3,47 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand:400,700" rel="stylesheet">
-    <title>Snippet Index</title>
+    <title>codeKeeper Profile</title>
   </head>
   <body>
     <header>
-      <h1 class=logo>{codeKeeper}</h1>
+      <h1 class="logo, button">{codeKeeper}</h1>
+      <a class="floatRight" href="/profile">Return to your profile</a>
+
+      <h2>Explore Code by Others</h2>
+
+      <div class="">
+        <p>Filter by language:</p>
+        <a class="Javascript" href="/all/filter/Javascript">Javascript</a>
+        <a class="HTML" href="/all/filter/HTML">HTML</a>
+        <a class="CSS" href="/all/filter/CSS">CSS</a>
+        <a class="Ruby" href="/all/filter/Ruby">Ruby</a>
+        <a class="button" href="/">All</a>
+      </div>
+
+      <form class="" action="/all/search" method="post">
+        <p>Search by tag:</p>
+        <input type="search" name="tag" value="" placeholder="Search by tag">
+        <button type="submit" name="button" id="loginButton">Submit</button>
+      </form>
+
     </header>
 
-    <!-- {{#user}}
-      <h1>Welcome, {{username}}!</h1>
-    {{/user}} -->
+    <div id="snip-container">
+      {{#snip}}
+        <div class="snip {{language}}">
+          <a href='/profile/{{_id}}'><h2>Title: {{title}}</h2></a>
+          <p>Created by: {{username}}</p>
+          <a href='/all/filter/{{language}}'class='{{language}}'>{{language}}</a>
+        </div>
+      {{/snip}}
+    </div>
 
-    <h1>View the latest code snippets:</h1>
-
-    {{#snip}}
-      <div class="snip">
-        <h2>{{title}}</h2>
-      </div>
+    {{^snip}}
+      <h1>Start adding {{language}} code snippets!</h1>
     {{/snip}}
+
   </body>
 </html>

@@ -1,3 +1,6 @@
+// DO/FIX:
+// - link to filter by language on indidual snippet pages is not working
+
 const fs = require('fs');
 const express = require('express');
 const mustacheExpress = require('mustache-express');
@@ -80,6 +83,13 @@ app.get('/profile/:snippet', function(req, res){
 })
 })
 
+app.get('/all/filter/:language', function (req, res) {
+    let language = req.params.language;
+    Snip.find({public: "true", language: language}).then(function (snip) {
+      res.render("index", {snip: snip, language:language})
+  })
+})
+
 app.get('/profile/filter/:language', function (req, res) {
     let language = req.params.language;
     Snip.find({username: res.locals.user.username, language: language}).then(function (snip) {
@@ -110,7 +120,15 @@ app.post('/profile/search', function(req, res){
   let tag = req.body.tag;
   Snip.find({ tags: { $in: [tag] }}).then(function (snip){
     res.render("profile", {snip: snip, tag: tag});
-    console.log(tag);
+    // console.log(tag);
+  })
+})
+
+app.post('/all/search', function(req, res){
+  let tag = req.body.tag;
+  Snip.find({ public: "true", tags: { $in: [tag] }}).then(function (snip){
+    res.render("index", {snip: snip, tag: tag});
+    // console.log(tag);
   })
 })
 
@@ -122,7 +140,9 @@ app.get('/profile', function(req, res){
 })
 
 app.get('/register', function(req, res){
-    res.render('register');
+    Snip.find().sort( { created: -1 } ).limit(5).then(function (snip) {
+      res.render('register', {snip:snip});
+    })
   });
 
 app.post('/register', function (req, res) {

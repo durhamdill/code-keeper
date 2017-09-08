@@ -33,5 +33,17 @@
 
     <p class="center">Returning user? <a class="button" href="/login">Go to login</a></p>
 
+    <h2 class="center">Preview the last five snippet additions:</h2>
+    <div id="snip-container">
+      {{#snip}}
+        <div class="snip {{language}}">
+          <a href='/profile/{{_id}}'><h2>Title: {{title}}</h2></a>
+          <p>Created by: {{username}}</p>
+          <p>Created: {{created}}</p>
+          <a href='/all/filter/{{language}}'class='{{language}}'>{{language}}</a>
+        </div>
+      {{/snip}}
+    </div>
+
   </body>
 </html>

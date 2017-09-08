@@ -10,14 +10,13 @@
   <body>
     <header>
       <h1 class="logo, button">{codeKeeper}</h1>
+      <a class="floatRight" href="/" class="button">Explore code by others</a>
 
       {{#username}}<h2>Welcome, {{username}}!</h2>{{/username}}
 
-      <p>You have {{snip.length}} saved snippets.</p>
+      <p>You have {{snip.length}} saved {{language}} {{#tag}}'{{tag}}'{{/tag}} snippets.</p>
 
-      <p><a href="/add" class="button">Add a code snippet</a>
-        <a href="/" class="button">Explore code by others</a>
-      </p>
+      <!-- TODO: need to fix so that these dont show up for new user who doesnt have code -->
 
       <div class="">
         <p>Filter by language:</p>
@@ -25,12 +24,15 @@
         <a class="HTML" href="/profile/filter/HTML">HTML</a>
         <a class="CSS" href="/profile/filter/CSS">CSS</a>
         <a class="Ruby" href="/profile/filter/Ruby">Ruby</a>
-        <!-- <p>OR</p> -->
+        <a class="button" href="/profile">All</a>
+        OR
+        <a href="/add" class="button">Add a code snippet</a>
       </div>
 
       <form class="" action="/profile/search" method="post">
-        <input type="search" name="tag" value="">
-        <button type="submit" name="button">Submit</button>
+        <p>Search by tag:</p>
+        <input type="search" name="tag" value="" placeholder="Search by tag">
+        <button type="submit" name="button" id="loginButton">Submit</button>
       </form>
 
     </header>
@@ -46,7 +48,7 @@
     </div>
 
     {{^snip}}
-      <h1>Start adding code snippets!</h1>
+      <h1>Start adding {{language}} code snippets!</h1>
     {{/snip}}
 
   </body>
