@@ -16,6 +16,12 @@
       <p class="center">Who says you should throw code away!?</p>
     </header>
 
+    {{#messages.error}}
+        <div id="loginButton" role="alert">
+          {{.}}
+        </div>
+    {{/messages.error}}
+
     <div id="login-form">
       <h1>Login to your account:</h1>
 

@@ -85,14 +85,14 @@ app.get('/profile/:snippet', function(req, res){
 
 app.get('/all/filter/:language', function (req, res) {
     let language = req.params.language;
-    Snip.find({public: "true", language: language}).then(function (snip) {
+    Snip.find({public: "true", language: language}).sort( { created: -1 } ).then(function (snip) {
       res.render("index", {snip: snip, language:language})
   })
 })
 
 app.get('/profile/filter/:language', function (req, res) {
     let language = req.params.language;
-    Snip.find({username: res.locals.user.username, language: language}).then(function (snip) {
+    Snip.find({username: res.locals.user.username, language: language}).sort( { created: -1 } ).then(function (snip) {
       res.render("profile", {snip: snip, language:language, username: res.locals.user.username})
   })
 })
@@ -118,7 +118,7 @@ app.post('/add', function(req, res){
 
 app.post('/profile/search', function(req, res){
   let tag = req.body.tag;
-  Snip.find({ tags: { $in: [tag] }}).then(function (snip){
+  Snip.find({ tags: { $in: [tag] }}).sort( { created: -1 } ).then(function (snip){
     res.render("profile", {snip: snip, tag: tag});
     // console.log(tag);
   })
@@ -126,7 +126,7 @@ app.post('/profile/search', function(req, res){
 
 app.post('/all/search', function(req, res){
   let tag = req.body.tag;
-  Snip.find({ public: "true", tags: { $in: [tag] }}).then(function (snip){
+  Snip.find({ public: "true", tags: { $in: [tag] }}).sort( { created: -1 } ).then(function (snip){
     res.render("index", {snip: snip, tag: tag});
     // console.log(tag);
   })
@@ -134,7 +134,7 @@ app.post('/all/search', function(req, res){
 
 app.get('/profile', function(req, res){
     // let javascript = Snip.find({username: res.locals.user.username, language: "Javascript"});
-    Snip.find({username: res.locals.user.username}).then(function (snip) {
+    Snip.find({username: res.locals.user.username}).sort( { created: -1 } ).then(function (snip) {
     res.render('profile', {snip: snip, username:res.locals.user.username});
   })
 })
@@ -166,7 +166,7 @@ app.post('/register', function (req, res) {
   }));
 
   app.get('/', function(req, res) {
-    Snip.find({public: "true"}).then(function (snip) {
+    Snip.find({public: "true"}).sort( { created: -1 } ).then(function (snip) {
       res.render('index', {snip: snip});
     })
   })
